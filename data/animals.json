@@ -117,6 +117,26 @@
         "hungry"
       ],
       "id": "11"
+    },
+    {
+      "name": "bob",
+      "species": "a",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "anxious"
+      ],
+      "id": "12"
+    },
+    {
+      "name": "desi",
+      "species": "loolah",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "anxious",
+        "loving",
+        "goofy"
+      ],
+      "id": "13"
     }
   ]
 }

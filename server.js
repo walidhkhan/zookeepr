@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
+app.use(express.static('public'));
+
 const { animals } = require('./data/animals');
 
 function filterByQuery(query, animalsArray) {
@@ -67,16 +69,16 @@ function createNewAnimal(body, animalsArray) {
 
 function validateAnimal(animal) {
     if (!animal.name || typeof animal.name !== 'string') {
-      return false;
+        return false;
     }
     if (!animal.species || typeof animal.species !== 'string') {
-      return false;
+        return false;
     }
     if (!animal.diet || typeof animal.diet !== 'string') {
-      return false;
+        return false;
     }
     if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
-      return false;
+        return false;
     }
     return true;
 }
@@ -97,6 +99,23 @@ app.get('/api/animals/:id', (req, res) => {
     } else {
         res.send(404);
     }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// wildcard route
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.post('/api/animals', (req, res) => {
